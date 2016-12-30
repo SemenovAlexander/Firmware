@@ -826,7 +826,7 @@ void Commands::processGCode(GCode *com)
         Printer::updateCurrentPosition();
     }
     break;
-#if FEATURE_Z_PROBE
+#if FEATURE_Z_PROBE == 1
     case 29: // G29 Probe for Endstop Offsets, Horizontal Radius, and Z Height
     {
       GCode::executeFString(PSTR("M104 S0\nM140 S0\nM107"));
