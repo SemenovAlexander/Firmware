@@ -348,6 +348,7 @@ void Commands::changeFeedrateMultiply(int factor)
     Printer::feedrateMultiply = factor;
     Com::printFLN(Com::tSpeedMultiply, factor);
 }
+#if DRIVE_SYSTEM == 3
 void Commands::changeHorizontalRadius(float hradius)
 {  
     if (hradius < 60) hradius = 60;
@@ -356,6 +357,7 @@ void Commands::changeHorizontalRadius(float hradius)
     Com::printFLN(Com::tHorizontalRadius, hradius);
    // EEPROM::storeDataIntoEEPROM(false);
 }
+#endif
 void Commands::changeFlowrateMultiply(int factor)
 {
     if(factor < 25) factor = 25;

@@ -1245,7 +1245,11 @@ void UIDisplay::parse(const char *txt,bool ram)
             }
             if(c2=='h')
             {
+              #if DRIVE_SYSTEM == 3
                 addFloat(Printer::radius0,3,2);
+              #else
+                addFloat(0,3,2);
+              #endif
                 break;
             }
             // Extruder output level
@@ -2035,12 +2039,12 @@ int UIDisplay::okAction(bool allowMoves)
         menuLevel = 1;
         menuTop[1] = 0;
         menuPos[1] =  UI_MENU_BACKCNT; // if top entry is back, default to next useful item
-        int16_t advanced_menu = EEPROM::isAdvanced(); // grab what menu system from eeprom
+        //int16_t advanced_menu = EEPROM::isAdvanced(); // grab what menu system from eeprom
         // setup menu system, full menus or simple;
-        if (advanced_menu != 0)
+        //if (advanced_menu != 0)
           menu[1] = &ui_menu_main;
-        else
-          menu[1] = &ui_menu_simple;
+        //else
+        //  menu[1] = &ui_menu_simple;
         
         BEEP_SHORT
         return 0;
@@ -2509,6 +2513,7 @@ bool UIDisplay::nextPreviousAction(int8_t next, bool allowMoves)
         Commands::changeFeedrateMultiply(fr);
     }
     break;
+#if DRIVE_SYSTEM == 3
     case UI_ACTION_HORIZONTAL_RADIUS:
     {
       INCREMENT_MIN_MAX(Printer::radius0, 0.01,60,150);
@@ -2516,6 +2521,7 @@ bool UIDisplay::nextPreviousAction(int8_t next, bool allowMoves)
       EEPROM::storeDataIntoEEPROM(false);
     }
     break;
+#endif
     case UI_ACTION_FLOWRATE_MULTIPLY:
     {
         INCREMENT_MIN_MAX(Printer::extrudeMultiply,1,25,500);
@@ -3170,13 +3176,13 @@ int UIDisplay::executeAction(int action, bool allowMoves)
          
         case UI_ACTION_SET_ADVANCED: // Set menu to Advanced (Full) Menu
         {
-          EEPROM::setIsAdvanced(1);
+          //EEPROM::setIsAdvanced(1);
           menuLevel = 0;
         }
         break;
         case UI_ACTION_SET_SIMPLE:  // Set menu to Simple Menu
         {
-          EEPROM::setIsAdvanced(0);
+          //EEPROM::setIsAdvanced(0);
           menuLevel = 0;
         }
         break;

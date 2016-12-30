@@ -1,5 +1,6 @@
 /*
 Printer Model List as used throughout this firmware
+Cartesian = 0
 Orion = 1
 Rostock Max V2 = 2
 ERIS = 3
@@ -8,7 +9,7 @@ Rostock MAX v3 = 5
 Hacker H2 = 6
 */
 // ### Define your Printer Model here! ###
-#define PRINTER 5
+#define PRINTER 0
 
 // ### Define your motherboard here! ###
 // 301 = RAMBo    302 = MINI RAMBo
@@ -22,6 +23,16 @@ Hacker H2 = 6
 // ################# BASIC CONFIGURATION IS ALL DONE ABOVE HERE ###############################
 // ########### ONLY ADVANCCED USERS SHOULD MODIFY ANYTHING BELOW THIS LINE ####################
 // ############################################################################################
+// ####################### END MANUAL SETTINGS ################################################
+
+
+
+
+
+
+
+
+
 
 
 
@@ -29,8 +40,9 @@ Hacker H2 = 6
 // ############################################################################################
 // ############ FW version info and build date for LCD and M115 string! #######################
 // ############################################################################################
+
 #define REPETIER_VERSION "0.92.2"
-#define FIRMWARE_DATE "20161227" // in date format yyyymmdd
+#define FIRMWARE_DATE "20161230" // in date format yyyymmdd
 
 
 
@@ -39,7 +51,6 @@ Hacker H2 = 6
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
 #define ADVANCED_USER 1 // Change to 1 to unlock full menus
-#define NUM_EXTRUDER 1
 
 #include "pins.h"
 
@@ -47,35 +58,14 @@ Hacker H2 = 6
 #define MICROSTEP_MODES {16,16,16,16,16} // 1,2,4,8,16
 #if MOTHERBOARD == 301  // RAMBo
 #define STEPPER_CURRENT_CONTROL CURRENT_CONTROL_DIGIPOT
-#define MOTOR_CURRENT {140,140,140,130,0}
 #elif MOTHERBOARD == 302  // Mini RAMBo
 #define STEPPER_CURRENT_CONTROL CURRENT_CONTROL_PWM
 #define MOTOR_CURRENT_PWM_RANGE 2000
 #endif
 
-
-// ################ END MANUAL SETTINGS ##########################
-
 #define MIN_DEFECT_TEMPERATURE 17  // this is the min temp that will allow the hotend to start heating.  Below this it will show as defective to help identify bad thermistors
 #define MAX_DEFECT_TEMPERATURE 300 // this is the max temp that wthe printer will throw errors about defective thermistors
-
 #define MIXING_EXTRUDER 0
-#define DRIVE_SYSTEM 3
-#define BELT_PITCH 2
-#define PULLEY_TEETH 20
-#define PULLEY_CIRCUMFERENCE (BELT_PITCH * PULLEY_TEETH)
-#define PULLEY_DIAMETER 10
-//#define PULLEY_CIRCUMFERENCE (PULLEY_DIAMETER * 3.1415927)
-#define STEPS_PER_ROTATION 200
-#define MICRO_STEPS 16
-#if PRINTER == 4
-#define AXIS_STEPS_PER_MM 1600  // DropLit v2 step settings
-#else
-#define AXIS_STEPS_PER_MM ((float)(MICRO_STEPS * STEPS_PER_ROTATION) / PULLEY_CIRCUMFERENCE)  // for deltas with 1.8 deg. steppers and 20 tooth GT2 pulleys
-#endif
-#define XAXIS_STEPS_PER_MM AXIS_STEPS_PER_MM
-#define YAXIS_STEPS_PER_MM AXIS_STEPS_PER_MM
-#define ZAXIS_STEPS_PER_MM AXIS_STEPS_PER_MM
 #define EXTRUDER_FAN_COOL_TEMP 40
 #define PDM_FOR_EXTRUDER 1
 #define PDM_FOR_COOLER 0
@@ -86,7 +76,6 @@ Hacker H2 = 6
 #define PAUSE_END_COMMANDS "G91/nG1 Z-10.0 E5.1 F1500/nG90/n"
 #define EXT0_X_OFFSET 0
 #define EXT0_Y_OFFSET 0
-#define EXT0_STEPS_PER_MM 92.4
 #define EXT0_TEMPSENSOR_TYPE 97
 #define EXT0_TEMPSENSOR_PIN TEMP_0_PIN
 #define EXT0_HEATER_PIN HEATER_0_PIN
@@ -101,13 +90,97 @@ Hacker H2 = 6
 #define EXT0_HEAT_MANAGER 1
 #define EXT0_WATCHPERIOD 3
 
-
-#if PRINTER == 1  // Orion Delta
+#if PRINTER == 0  // Cartesian X/Y/Z
+#define DRIVE_SYSTEM 0
 #if MOTHERBOARD == 301
 #define MOTOR_CURRENT {140,140,140,130,0}
 #elif MOTHERBOARD == 302
 #define MOTOR_CURRENT_PWM {60, 60, 130}
 #endif
+//#define AXIS_STEPS_PER_MM 80.0
+#define XAXIS_STEPS_PER_MM 80.0
+#define YAXIS_STEPS_PER_MM 80.0
+#define ZAXIS_STEPS_PER_MM 80.0
+#define EXT0_STEPS_PER_MM 92.4
+#define NUM_EXTRUDER 0
+#define EXT0_PID_INTEGRAL_DRIVE_MAX 180
+#define EXT0_PID_INTEGRAL_DRIVE_MIN 80
+#define EXT0_PID_PGAIN_OR_DEAD_TIME 14.50
+#define EXT0_PID_I 0.73
+#define EXT0_PID_D 53.41
+#define EXT0_PID_MAX 235
+#define HAVE_HEATED_BED 0
+#define MIN_EXTRUDER_TEMP 150  //  this is the minimum temperature that will allow the extruder to drive filament, lower and it will ignore extruder commands
+#define MAXTEMP 245            //  this is the max allowable temp the hotend can be set at, any higher will trigger safety's
+#define INVERT_X_DIR 1
+#define INVERT_Y_DIR 1
+#define INVERT_Z_DIR 1
+#define X_MAX_LENGTH 100.0
+#define Y_MAX_LENGTH 100.0
+#define Z_MAX_LENGTH 100.0
+#define STEPPER_INACTIVE_TIME 600L
+#define MAX_INACTIVE_TIME 900L
+#define MAX_FEEDRATE_X 250
+#define MAX_FEEDRATE_Y 250
+#define MAX_FEEDRATE_Z 250
+#define HOMING_FEEDRATE_X 80
+#define HOMING_FEEDRATE_Y 80
+#define HOMING_FEEDRATE_Z 80
+#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_X 1650
+#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Y 1650
+#define MAX_ACCELERATION_UNITS_PER_SQ_SECOND_Z 1650
+#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_X 2800
+#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Y 2800
+#define MAX_TRAVEL_ACCELERATION_UNITS_PER_SQ_SECOND_Z 2800
+#define MAX_JERK 28
+#define MAX_ZJERK 28
+#define FEATURE_Z_PROBE 0
+#define Z_PROBE_SENSITIVITY  20 // 0-126 7 bit value
+#define Z_PROBE_BED_DISTANCE 20
+#define Z_PROBE_PULLUP 1 //0
+#define Z_PROBE_ON_HIGH 0 //1
+#define Z_PROBE_X_OFFSET 0
+#define Z_PROBE_Y_OFFSET 0
+#define Z_PROBE_WAIT_BEFORE_TEST 0
+#define Z_PROBE_SPEED 60
+#define Z_PROBE_XY_SPEED 50
+#define Z_PROBE_SWITCHING_DISTANCE 10
+#define Z_PROBE_REPETITIONS 1
+#define Z_PROBE_HEIGHT -.2
+#define Z_PROBE_START_SCRIPT "G28/nG1Z25/n"
+//#define Z_PROBE_START_SCRIPT "M117 Probe Started/n"
+#define Z_PROBE_FINISHED_SCRIPT ""
+#define FEATURE_AUTOLEVEL 0
+#define Z_PROBE_X1 -75.933
+#define Z_PROBE_Y1 -43.84
+#define Z_PROBE_X2 75.933
+#define Z_PROBE_Y2 -43.84
+#define Z_PROBE_X3 0
+#define Z_PROBE_Y3 87.69
+#define SDSUPPORT 1
+#define SDCARDDETECT 81
+#define SDCARDDETECTINVERTED 0
+#define FEATURE_CONTROLLER 13
+#define UI_PRINTER_NAME "Cartesian"
+#define SDSUPPORT 1
+#define SDCARDDETECT 81
+#define SDCARDDETECTINVERTED 0
+
+// end cartesian define
+
+#elif PRINTER == 1  // Orion Delta
+#define DRIVE_SYSTEM 3
+#if MOTHERBOARD == 301
+#define MOTOR_CURRENT {140,140,140,130,0}
+#elif MOTHERBOARD == 302
+#define MOTOR_CURRENT_PWM {60, 60, 130}
+#endif
+#define AXIS_STEPS_PER_MM 80.0
+#define XAXIS_STEPS_PER_MM 80.0
+#define YAXIS_STEPS_PER_MM 80.0
+#define ZAXIS_STEPS_PER_MM 80.0
+#define EXT0_STEPS_PER_MM 92.4
+#define NUM_EXTRUDER 1
 #define EXT0_PID_INTEGRAL_DRIVE_MAX 180
 #define EXT0_PID_INTEGRAL_DRIVE_MIN 80
 #define EXT0_PID_PGAIN_OR_DEAD_TIME 14.50
@@ -180,7 +253,18 @@ Hacker H2 = 6
 #define SDCARDDETECTINVERTED 0
 
 #elif PRINTER == 2 // Rostock MAX v2
+#define DRIVE_SYSTEM 3
+#if MOTHERBOARD == 301
 #define MOTOR_CURRENT {140,140,140,130,0}
+#elif MOTHERBOARD == 302
+#define MOTOR_CURRENT_PWM {60, 60, 130}
+#endif
+#define AXIS_STEPS_PER_MM 80.0
+#define XAXIS_STEPS_PER_MM 80.0
+#define YAXIS_STEPS_PER_MM 80.0
+#define ZAXIS_STEPS_PER_MM 80.0
+#define EXT0_STEPS_PER_MM 92.4
+#define NUM_EXTRUDER 1
 #define EXT0_PID_INTEGRAL_DRIVE_MAX 180
 #define EXT0_PID_INTEGRAL_DRIVE_MIN 80
 #define EXT0_PID_PGAIN_OR_DEAD_TIME 14.50
@@ -247,7 +331,18 @@ Hacker H2 = 6
 
 
 #elif PRINTER == 3  // ERIS Delta
+#define DRIVE_SYSTEM 3
+#if MOTHERBOARD == 301
+#define MOTOR_CURRENT {80,80,80,130,0}
+#elif MOTHERBOARD == 302
 #define MOTOR_CURRENT_PWM {20, 20, 130}
+#endif
+#define AXIS_STEPS_PER_MM 80.0
+#define XAXIS_STEPS_PER_MM 80.0
+#define YAXIS_STEPS_PER_MM 80.0
+#define ZAXIS_STEPS_PER_MM 80.0
+#define EXT0_STEPS_PER_MM 92.4
+#define NUM_EXTRUDER 1
 #define EXT0_PID_INTEGRAL_DRIVE_MAX 200
 #define EXT0_PID_INTEGRAL_DRIVE_MIN 120
 #define EXT0_PID_PGAIN_OR_DEAD_TIME 25.0
@@ -312,7 +407,14 @@ Hacker H2 = 6
 
 
 #elif PRINTER == 4  // DropLit v2 bogus values to compile fw
+#define DRIVE_SYSTEM 3
 #define MOTOR_CURRENT_PWM {0, 50, 0}  // No need for X/Y or E motor currents
+#define AXIS_STEPS_PER_MM 1600.0
+#define XAXIS_STEPS_PER_MM AXIS_STEPS_PER_MM
+#define YAXIS_STEPS_PER_MM AXIS_STEPS_PER_MM
+#define ZAXIS_STEPS_PER_MM AXIS_STEPS_PER_MM
+#define EXT0_STEPS_PER_MM 92.4
+#define NUM_EXTRUDER 1
 #define EXT0_PID_INTEGRAL_DRIVE_MAX 180
 #define EXT0_PID_INTEGRAL_DRIVE_MIN 60
 #define EXT0_PID_PGAIN_OR_DEAD_TIME 22.0
@@ -373,8 +475,19 @@ Hacker H2 = 6
 #define HAVE_HEATED_BED 0
 
 #elif PRINTER == 5  // Rostock MAX v3
+#define DRIVE_SYSTEM 3
 #define FAN_BOARD_PIN 6  // ERIS Case Fan pin
+#if MOTHERBOARD == 301
 #define MOTOR_CURRENT {140,140,140,130,0}
+#elif MOTHERBOARD == 302
+#define MOTOR_CURRENT_PWM {60, 60, 130}
+#endif
+#define AXIS_STEPS_PER_MM 80.0
+#define XAXIS_STEPS_PER_MM 80.0
+#define YAXIS_STEPS_PER_MM 80.0
+#define ZAXIS_STEPS_PER_MM 80.0
+#define EXT0_STEPS_PER_MM 92.4
+#define NUM_EXTRUDER 1
 #define EXT0_PID_INTEGRAL_DRIVE_MAX 180
 #define EXT0_PID_INTEGRAL_DRIVE_MIN 80
 #define EXT0_PID_PGAIN_OR_DEAD_TIME 14.50
@@ -440,7 +553,18 @@ Hacker H2 = 6
 #define UI_PRINTER_NAME "RostockMAXv3"
 
 #elif PRINTER == 6  // Hacker H2
+#define DRIVE_SYSTEM 3
+#if MOTHERBOARD == 301
+#define MOTOR_CURRENT {140,140,140,130,0}
+#elif MOTHERBOARD == 302
 #define MOTOR_CURRENT_PWM {100, 100, 130}
+#endif
+#define AXIS_STEPS_PER_MM 80.0
+#define XAXIS_STEPS_PER_MM 80.0
+#define YAXIS_STEPS_PER_MM 80.0
+#define ZAXIS_STEPS_PER_MM 80.0
+#define EXT0_STEPS_PER_MM 92.4
+#define NUM_EXTRUDER 1
 #define EXT0_PID_INTEGRAL_DRIVE_MAX 180
 #define EXT0_PID_INTEGRAL_DRIVE_MIN 80
 #define EXT0_PID_PGAIN_OR_DEAD_TIME 14.50
