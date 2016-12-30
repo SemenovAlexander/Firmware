@@ -158,8 +158,8 @@ Hacker H2 = 6
 #define HOMING_FEEDRATE_X 80
 #define HOMING_FEEDRATE_Y 80
 #define HOMING_FEEDRATE_Z 80
-#define X_HOME_DIR 0
-#define Y_HOME_DIR 0
+#define X_HOME_DIR -1
+#define Y_HOME_DIR -1
 #define Z_HOME_DIR 1
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
