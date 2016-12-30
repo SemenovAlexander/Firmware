@@ -9,11 +9,11 @@ Rostock MAX v3 = 5
 Hacker H2 = 6
 */
 // ### Define your Printer Model here! ###
-#define PRINTER 6
+#define PRINTER 0
 
 // ### Define your motherboard here! ###
 // 301 = RAMBo    302 = MINI RAMBo
-#define MOTHERBOARD 302
+#define MOTHERBOARD 301
 
 // ##### Older Orions w/ATX had Y inverted and NEW PSU on orions needs opposite ###
 // 1 = ATX on older machines  2 = Rail style PSU on newer machines ############################
@@ -69,6 +69,10 @@ Hacker H2 = 6
 #define EXT0_HEAT_MANAGER 1
 #define EXT0_WATCHPERIOD 3
 
+
+//##################################################
+//############  Traditional Cartesian   ############
+//##################################################
 #if PRINTER == 0  // Cartesian X/Y/Z
 #define DRIVE_SYSTEM 0
 #if MOTHERBOARD == 301
@@ -85,37 +89,37 @@ Hacker H2 = 6
 // X axis Endstop settings
 #define ENDSTOP_PULLUP_X_MIN true
 #define ENDSTOP_X_MIN_INVERTING false
-#define MIN_HARDWARE_ENDSTOP_X false
+#define MIN_HARDWARE_ENDSTOP_X true
 #define ENDSTOP_PULLUP_X_MAX true
 #define ENDSTOP_X_MAX_INVERTING false
-#define MAX_HARDWARE_ENDSTOP_X true
+#define MAX_HARDWARE_ENDSTOP_X false
 // Y axis endstop settings
 #define ENDSTOP_PULLUP_Y_MIN true
 #define ENDSTOP_Y_MIN_INVERTING false
-#define MIN_HARDWARE_ENDSTOP_Y false
+#define MIN_HARDWARE_ENDSTOP_Y true
 #define ENDSTOP_PULLUP_Y_MAX true
 #define ENDSTOP_Y_MAX_INVERTING false
-#define MAX_HARDWARE_ENDSTOP_Y true
+#define MAX_HARDWARE_ENDSTOP_Y false
 // Z axis endstop settings
 #define ENDSTOP_PULLUP_Z_MIN true
-#define ENDSTOP_Z_MIN_INVERTING true
+#define ENDSTOP_Z_MIN_INVERTING false
 #define MIN_HARDWARE_ENDSTOP_Z false
 #define ENDSTOP_PULLUP_Z_MAX true
 #define ENDSTOP_Z_MAX_INVERTING false
 #define MAX_HARDWARE_ENDSTOP_Z true
-#define max_software_endstop_r true
+#define max_software_endstop_r false
 #define min_software_endstop_x false
 #define min_software_endstop_y false
-#define min_software_endstop_z false
+#define min_software_endstop_z true
 #define max_software_endstop_x true
-#define max_software_endstop_y true
-#define max_software_endstop_z true
+#define max_software_endstop_y true 
+#define max_software_endstop_z false
 #define ENDSTOP_X_BACK_MOVE 5
 #define ENDSTOP_Y_BACK_MOVE 5
 #define ENDSTOP_Z_BACK_MOVE 5
-#define ENDSTOP_X_RETEST_REDUCTION_FACTOR 2
-#define ENDSTOP_Y_RETEST_REDUCTION_FACTOR 2
-#define ENDSTOP_Z_RETEST_REDUCTION_FACTOR 2
+#define ENDSTOP_X_RETEST_REDUCTION_FACTOR 4
+#define ENDSTOP_Y_RETEST_REDUCTION_FACTOR 4
+#define ENDSTOP_Z_RETEST_REDUCTION_FACTOR 4
 #define ENDSTOP_X_BACK_ON_HOME 5
 #define ENDSTOP_Y_BACK_ON_HOME 5
 #define ENDSTOP_Z_BACK_ON_HOME 5
@@ -154,8 +158,8 @@ Hacker H2 = 6
 #define HOMING_FEEDRATE_X 80
 #define HOMING_FEEDRATE_Y 80
 #define HOMING_FEEDRATE_Z 80
-#define X_HOME_DIR 1
-#define Y_HOME_DIR 1
+#define X_HOME_DIR 0
+#define Y_HOME_DIR 0
 #define Z_HOME_DIR 1
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
@@ -194,12 +198,9 @@ Hacker H2 = 6
 // LCD Configuration
 #define FEATURE_CONTROLLER 13
 #define UI_PRINTER_NAME "Cartesian"
-#define SDSUPPORT 1
-#define SDCARDDETECT 81
 #define SDCARDDETECTINVERTED 0
 #define SDSUPPORT 1
 #define SDCARDDETECT 81
-#define SDCARDDETECTINVERTED 0
 // ############# Heated bed configuration ########################
 #define HAVE_HEATED_BED 0
 #define HEATED_BED_MAX_TEMP 120
@@ -356,9 +357,6 @@ Hacker H2 = 6
 // LCD Configuration
 #define FEATURE_CONTROLLER 13
 #define UI_PRINTER_NAME "ORION Delta"
-#define SDSUPPORT 1
-#define SDCARDDETECT 81
-#define SDCARDDETECTINVERTED 0
 #define SDSUPPORT 1
 #define SDCARDDETECT 81
 #define SDCARDDETECTINVERTED 0
@@ -669,6 +667,9 @@ Hacker H2 = 6
 // LCD Configuration
 #define FEATURE_CONTROLLER 0
 #define UI_PRINTER_NAME "ERIS Delta"
+#define SDSUPPORT 0
+#define SDCARDDETECT 81
+#define SDCARDDETECTINVERTED 0
 // ############# Heated bed configuration ########################
 #define HAVE_HEATED_BED 0
 #define HEATED_BED_MAX_TEMP 120
