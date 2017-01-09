@@ -1,14 +1,23 @@
 /*
 Printer Model List as used throughout this firmware
-Orion = 1
-Rostock Max V2 = 2
-ERIS = 3
-DROPLIT = 4
-Rostock MAX v3 = 5
-Hacker H2 = 6
+Orion            = 1
+Rostock Max V2   = 2
+ERIS             = 3
+DROPLIT          = 4
+Rostock MAX v3   = 5
+Hacker H2        = 6
 */
 // ### Define your Printer Model here! ###
 #define PRINTER 5
+
+// SeeMeCNC Bowden w/PEEK barrel = 1
+// HE240 on ERIS w/accel probe   = 2
+// HE280 w/accel probe           = 3
+#define HOTEND 3
+
+// ### Number of active extruders
+// 1 is standard, 2 is with the Y coupler for dual filament input
+#define NUM_EXTRUDER 1
 
 // ### Define your motherboard here! ###
 // 301 = RAMBo    302 = MINI RAMBo
@@ -24,22 +33,15 @@ Hacker H2 = 6
 // ############################################################################################
 
 
-
-
 // ############################################################################################
 // ############ FW version info and build date for LCD and M115 string! #######################
 // ############################################################################################
 #define REPETIER_VERSION "0.92.2"
 #define FIRMWARE_DATE "20170109" // in date format yyyymmdd
 
-
-
-
-
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
 #define ADVANCED_USER 1 // Change to 1 to unlock full menus
-#define NUM_EXTRUDER 1
 
 #include "pins.h"
 
@@ -116,7 +118,11 @@ Hacker H2 = 6
 #define EXT0_PID_MAX 235
 #define HAVE_HEATED_BED 1
 #define MIN_EXTRUDER_TEMP 150  //  this is the minimum temperature that will allow the extruder to drive filament, lower and it will ignore extruder commands
-#define MAXTEMP 245            //  this is the max allowable temp the hotend can be set at, any higher will trigger safety's
+#if HOTEND == 1
+#define MAXTEMP 245            //  original PEEK hotend
+#elif HOTEND == 2
+#define MAXTEMP 290            // HE280 Hotend
+#endif
 #define INVERT_X_DIR 1
 #if POWER_SUPPLY == 2
 #define INVERT_Y_DIR 1
@@ -189,7 +195,11 @@ Hacker H2 = 6
 #define EXT0_PID_MAX 235
 #define HAVE_HEATED_BED 1
 #define MIN_EXTRUDER_TEMP 150  //  this is the minimum temperature that will allow the extruder to drive filament, lower and it will ignore extruder commands
-#define MAXTEMP 245            //  this is the max allowable temp the hotend can be set at, any higher will trigger safety's
+#if HOTEND == 1
+#define MAXTEMP 245            //  original PEEK hotend
+#elif HOTEND == 2
+#define MAXTEMP 290            // HE280 Hotend
+#endif
 #define INVERT_X_DIR 1
 #define INVERT_Y_DIR 0
 #define INVERT_Z_DIR 1
@@ -373,8 +383,12 @@ Hacker H2 = 6
 #define HAVE_HEATED_BED 0
 
 #elif PRINTER == 5  // Rostock MAX v3
-#define FAN_BOARD_PIN 6  // ERIS Case Fan pin
+#define FAN_BOARD_PIN 6  //Cooling fan on RAMBo board
+#if NUM_EXTRUDER == 1
 #define MOTOR_CURRENT {140,140,140,130,0}
+#elif NUM_EXTRUDER == 2
+#define MOTOR_CURRENT {140,140,140,130,130}
+#endif
 #define EXT0_PID_INTEGRAL_DRIVE_MAX 180
 #define EXT0_PID_INTEGRAL_DRIVE_MIN 80
 #define EXT0_PID_PGAIN_OR_DEAD_TIME 14.50
