@@ -17,7 +17,7 @@ Hacker H2        = 6
 
 // ### Number of active extruders
 // 1 is standard, 2 is with the Y coupler for dual filament input
-#define NUM_EXTRUDER 1
+#define NUM_EXTRUDER 2
 
 // ### Define your motherboard here! ###
 // 301 = RAMBo    302 = MINI RAMBo
@@ -120,7 +120,7 @@ Hacker H2        = 6
 #define MIN_EXTRUDER_TEMP 150  //  this is the minimum temperature that will allow the extruder to drive filament, lower and it will ignore extruder commands
 #if HOTEND == 1
 #define MAXTEMP 245            //  original PEEK hotend
-#elif HOTEND == 2
+#elif HOTEND == 3
 #define MAXTEMP 290            // HE280 Hotend
 #endif
 #define INVERT_X_DIR 1
@@ -197,7 +197,7 @@ Hacker H2        = 6
 #define MIN_EXTRUDER_TEMP 150  //  this is the minimum temperature that will allow the extruder to drive filament, lower and it will ignore extruder commands
 #if HOTEND == 1
 #define MAXTEMP 245            //  original PEEK hotend
-#elif HOTEND == 2
+#elif HOTEND == 3
 #define MAXTEMP 290            // HE280 Hotend
 #endif
 #define INVERT_X_DIR 1
@@ -518,7 +518,6 @@ Hacker H2        = 6
 #define UI_PRINTER_NAME "Hacker H2"
 #define HAVE_HEATED_BED 0
 #define FEATURE_CONTROLLER 13
-
 #endif
 
 
@@ -532,7 +531,7 @@ Hacker H2        = 6
 
 #if MOTHERBOARD == 302
 #define EXT0_EXTRUDER_COOLER_PIN -1
-#else
+#elif MOTHERBOARD == 301
 #define EXT0_EXTRUDER_COOLER_PIN 7
 #endif
 
