@@ -78,9 +78,23 @@ Hacker H2        = 6
 #define XAXIS_STEPS_PER_MM AXIS_STEPS_PER_MM
 #define YAXIS_STEPS_PER_MM AXIS_STEPS_PER_MM
 #define ZAXIS_STEPS_PER_MM AXIS_STEPS_PER_MM
+
+// ### Hotend and Extruder configuration
+#define MIN_EXTRUDER_TEMP 150
+#if HOTEND == 1
+#define MAXTEMP 240            
+#elif HOTEND == 2
+#define MAXTEMP 240
+#elif HOTEND == 3
+#define MAXTEMP 290
+#endif
 #define EXTRUDER_FAN_COOL_TEMP 40
-#define PDM_FOR_EXTRUDER 1
-#define PDM_FOR_COOLER 0
+// using PWM not PDM
+//#define PDM_FOR_EXTRUDER 0
+//#define PDM_FOR_COOLER 0
+//#define PDM_FOR_EXTRUDER 1
+//#define PDM_FOR_COOLER 1
+#define FEATURE_WATCHDOG 1
 #define DECOUPLING_TEST_MAX_HOLD_VARIANCE 20
 #define DECOUPLING_TEST_MIN_TEMP_RISE 1
 #define RETRACT_ON_PAUSE 2
@@ -102,6 +116,38 @@ Hacker H2        = 6
 #define EXT0_MAX_ACCELERATION 6500
 #define EXT0_HEAT_MANAGER 1
 #define EXT0_WATCHPERIOD 3
+#define EXT0_PID_INTEGRAL_DRIVE_MAX 180
+#define EXT0_PID_INTEGRAL_DRIVE_MIN 80
+#define EXT0_PID_PGAIN_OR_DEAD_TIME 14.50
+#define EXT0_PID_I 0.73
+#define EXT0_PID_D 53.41
+#define EXT0_PID_MAX 255
+
+
+
+#define EXT0_ADVANCE_K 0
+#define EXT0_ADVANCE_L 0
+#define EXT0_ADVANCE_BACKLASH_STEPS 0
+#define EXT0_WAIT_RETRACT_TEMP 150
+#define EXT0_WAIT_RETRACT_UNITS 0
+#define EXT0_SELECT_COMMANDS "M117 Extruder 1"
+#define EXT0_DESELECT_COMMANDS ""
+
+#if MOTHERBOARD == 302
+#define EXT0_EXTRUDER_COOLER_PIN -1
+#elif MOTHERBOARD == 301
+#define EXT0_EXTRUDER_COOLER_PIN 7
+#endif
+#define EXT0_EXTRUDER_COOLER_SPEED 200
+#define EXT0_DECOUPLE_TEST_PERIOD 45000
+
+
+
+
+
+
+
+
 
 
 #if PRINTER == 1  // Orion Delta
@@ -389,15 +435,7 @@ Hacker H2        = 6
 #elif NUM_EXTRUDER == 2
 #define MOTOR_CURRENT {140,140,140,130,130}
 #endif
-#define EXT0_PID_INTEGRAL_DRIVE_MAX 180
-#define EXT0_PID_INTEGRAL_DRIVE_MIN 80
-#define EXT0_PID_PGAIN_OR_DEAD_TIME 14.50
-#define EXT0_PID_I 0.73
-#define EXT0_PID_D 53.41
-#define EXT0_PID_MAX 255
 #define HAVE_HEATED_BED 1
-#define MIN_EXTRUDER_TEMP 150  //  this is the minimum temperature that will allow the extruder to drive filament, lower and it will ignore extruder commands
-#define MAXTEMP 290            //  this is the max allowable temp the hotend can be set at, any higher will trigger safety's
 #define INVERT_X_DIR 1
 #define INVERT_Y_DIR 1
 #define INVERT_Z_DIR 1
@@ -520,23 +558,6 @@ Hacker H2        = 6
 #define FEATURE_CONTROLLER 13
 #endif
 
-
-#define EXT0_ADVANCE_K 0
-#define EXT0_ADVANCE_L 0
-#define EXT0_ADVANCE_BACKLASH_STEPS 0
-#define EXT0_WAIT_RETRACT_TEMP 150
-#define EXT0_WAIT_RETRACT_UNITS 0
-#define EXT0_SELECT_COMMANDS "M117 Extruder 1"
-#define EXT0_DESELECT_COMMANDS ""
-
-#if MOTHERBOARD == 302
-#define EXT0_EXTRUDER_COOLER_PIN -1
-#elif MOTHERBOARD == 301
-#define EXT0_EXTRUDER_COOLER_PIN 7
-#endif
-
-#define EXT0_EXTRUDER_COOLER_SPEED 200
-#define EXT0_DECOUPLE_TEST_PERIOD 45000
 
 #define FEATURE_RETRACTION 0
 #define AUTORETRACT_ENABLED 0
@@ -783,7 +804,7 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define SERVO1_PIN -1
 #define SERVO2_PIN -1
 #define SERVO3_PIN -1
-#define FEATURE_WATCHDOG 1
+
 
 /* #################### Z-Probe configuration and Settings #####################
    These will change machine to machine, be sure to have the correct machine selected in the top of this config file
