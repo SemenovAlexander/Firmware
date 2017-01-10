@@ -1934,7 +1934,11 @@ S3(ext)=9
 // ### HOTEND PINS ###
 #if MOTHERBOARD == 301
 #define TEMP_0_PIN     0
+#if CLONE == 0
 #define TEMP_1_PIN     -1
+#elif CLONE == 1
+#define TEMP_1_PIN     0
+#endif
 #define TEMP_2_PIN     -1
 #define HEATER_0_PIN 9
 #define HEATER_1_PIN -1
@@ -1947,6 +1951,10 @@ S3(ext)=9
 #define HEATER_1_PIN -1
 #define HEATER_2_PIN -1
 #endif
+
+// ### FAN pins ###
+#define ORIG_FAN_PIN    8
+#define FAN_1_PIN -1
 
 // ### EXT0 and EXT1 PINS ###
 #define ORIG_E0_STEP_PIN    34
@@ -1978,7 +1986,6 @@ S3(ext)=9
 
 // ### Misc Pins ###
 #define LED_PIN        13
-#define ORIG_FAN_PIN    8
 #define SUICIDE_PIN    -1  //PIN that has to be turned on right after start, to keep power flowing.
 #define SDPOWER        -1
 #define SDSS           53
@@ -1989,7 +1996,6 @@ S3(ext)=9
   #define ORIG_X_MAX_PIN 30
   #define ORIG_Y_MAX_PIN 24
   #define ORIG_Z_MAX_PIN 23
-  #define FAN_1_PIN -1// 6
   #define ORIG_PS_ON_PIN 71
   #define PS_ON_PIN 71
   #define ORIG_SDCARDDETECT 	    15
