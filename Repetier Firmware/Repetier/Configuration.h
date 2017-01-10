@@ -19,6 +19,9 @@ Hacker H2        = 6
 // 1 is standard, 2 is with the Y coupler for dual filament input
 #define NUM_EXTRUDER 2
 
+// ### CLONE == 0 is none, 1 is dual input filament setups - this is for the pins.h file to configure the second input reading
+#define CLONE 1
+
 // ### Define your motherboard here! ###
 // 301 = RAMBo    302 = MINI RAMBo
 #define MOTHERBOARD 301
@@ -37,7 +40,7 @@ Hacker H2        = 6
 // ############ FW version info and build date for LCD and M115 string! #######################
 // ############################################################################################
 #define REPETIER_VERSION "0.92.2"
-#define FIRMWARE_DATE "20170109" // in date format yyyymmdd
+#define FIRMWARE_DATE "20170110" // in date format yyyymmdd
 
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
@@ -102,7 +105,7 @@ Hacker H2        = 6
 #define EXT0_X_OFFSET 0
 #define EXT0_Y_OFFSET 0
 #define EXT0_STEPS_PER_MM 92.4
-#define EXT0_TEMPSENSOR_TYPE 97
+#define EXT0_TEMPSENSOR_TYPE 0 //97
 #define EXT0_TEMPSENSOR_PIN TEMP_0_PIN
 #define EXT0_HEATER_PIN HEATER_0_PIN
 #define EXT0_STEP_PIN ORIG_E0_STEP_PIN
@@ -141,7 +144,7 @@ Hacker H2        = 6
 #define EXT1_X_OFFSET 0
 #define EXT1_Y_OFFSET 0
 #define EXT1_STEPS_PER_MM 92.4
-#define EXT1_TEMPSENSOR_TYPE 97
+#define EXT1_TEMPSENSOR_TYPE 0 //97
 #define EXT1_TEMPSENSOR_PIN TEMP_0_PIN
 #define EXT1_HEATER_PIN HEATER_0_PIN
 #define EXT1_STEP_PIN ORIG_E0_STEP_PIN
@@ -646,7 +649,7 @@ Hacker H2        = 6
 // ############# Heated bed configuration ########################
 #define HEATED_BED_MAX_TEMP 120
 #define SKIP_M190_IF_WITHIN 5
-#define HEATED_BED_SENSOR_TYPE 97
+#define HEATED_BED_SENSOR_TYPE 0
 #define HEATED_BED_SENSOR_PIN TEMP_BED_PIN
 #define HEATED_BED_HEATER_PIN HEATER_BED_PIN
 #define HEATED_BED_SET_INTERVAL 5000
@@ -836,7 +839,7 @@ Servos are controlled by a pulse width normally between 500 and 2500 with 1500ms
 WARNING: Servos can draw a considerable amount of current. Make sure your system can handle this or you may risk your hardware!
 */
 #define FEATURE_SERVO 0
-#define SERVO0_PIN 11
+#define SERVO0_PIN -1
 #define SERVO1_PIN -1
 #define SERVO2_PIN -1
 #define SERVO3_PIN -1
