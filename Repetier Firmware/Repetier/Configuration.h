@@ -185,6 +185,7 @@ Hacker H2        = 6
 // ############# Heated bed configuration ########################
 #define HEATED_BED_MAX_TEMP 120
 #define SKIP_M190_IF_WITHIN 5
+#define HEATED_BED_SENSOR_TYPE 97 //97
 #define HEATED_BED_SENSOR_PIN TEMP_BED_PIN
 #define HEATED_BED_HEATER_PIN HEATER_BED_PIN
 #define HEATED_BED_SET_INTERVAL 5000
