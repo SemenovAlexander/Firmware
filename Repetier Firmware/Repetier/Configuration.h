@@ -19,7 +19,10 @@ Hacker H2        = 6
 // 1 is standard, 2 is with the Y coupler for dual filament input
 #define NUM_EXTRUDER 2
 
-// ### CLONE == 0 is none, 1 is dual input filament setups - this is for the pins.h file to configure the second input reading
+// ### CLONE settings ###
+// 0 is none, for just a standard single extruder/nozzle setup
+// 1 is dual input filament setups - this is for the pins.h file to configure the second input reading
+// 2 NOT USED YET, but will be for dual independent hotends/nozzles/extruders
 #define CLONE 1
 
 // ### Define your motherboard here! ###
@@ -105,7 +108,7 @@ Hacker H2        = 6
 #define EXT0_X_OFFSET 0
 #define EXT0_Y_OFFSET 0
 #define EXT0_STEPS_PER_MM 92.4
-#define EXT0_TEMPSENSOR_TYPE 0 //97
+#define EXT0_TEMPSENSOR_TYPE 97 //97
 #define EXT0_TEMPSENSOR_PIN TEMP_0_PIN
 #define EXT0_HEATER_PIN HEATER_0_PIN
 #define EXT0_STEP_PIN ORIG_E0_STEP_PIN
@@ -144,7 +147,7 @@ Hacker H2        = 6
 #define EXT1_X_OFFSET 0
 #define EXT1_Y_OFFSET 0
 #define EXT1_STEPS_PER_MM 92.4
-#define EXT1_TEMPSENSOR_TYPE 0 //97
+#define EXT1_TEMPSENSOR_TYPE 97 //97
 #define EXT1_TEMPSENSOR_PIN TEMP_1_PIN
 #define EXT1_HEATER_PIN HEATER_1_PIN
 #define EXT1_STEP_PIN ORIG_E1_STEP_PIN
@@ -179,12 +182,26 @@ Hacker H2        = 6
 #define EXT1_EXTRUDER_COOLER_SPEED 200
 #define EXT1_DECOUPLE_TEST_PERIOD 45000
 
+// ############# Heated bed configuration ########################
+#define HEATED_BED_MAX_TEMP 120
+#define SKIP_M190_IF_WITHIN 5
+#define HEATED_BED_SENSOR_PIN TEMP_BED_PIN
+#define HEATED_BED_HEATER_PIN HEATER_BED_PIN
+#define HEATED_BED_SET_INTERVAL 5000
+#define HEATED_BED_HEAT_MANAGER 1
+#define HEATED_BED_PID_INTEGRAL_DRIVE_MAX 255
+#define HEATED_BED_PID_INTEGRAL_DRIVE_MIN 80
+#define HEATED_BED_PID_PGAIN_OR_DEAD_TIME   87.86
+#define HEATED_BED_PID_IGAIN   3.01
+#define HEATED_BED_PID_DGAIN 641.82
+#define HEATED_BED_PID_MAX 255
+#define HEATED_BED_DECOUPLE_TEST_PERIOD 300000
 
 
 
-
-
-
+// #################################
+// ### PRINTER SPECIFIC SETTINGS ###
+// #################################
 
 #if PRINTER == 1  // Orion Delta
 #if MOTHERBOARD == 301
@@ -646,21 +663,6 @@ Hacker H2        = 6
 #define GENERIC_THERM_NUM_ENTRIES 33
 #define HEATER_PWM_SPEED 0
 
-// ############# Heated bed configuration ########################
-#define HEATED_BED_MAX_TEMP 120
-#define SKIP_M190_IF_WITHIN 5
-#define HEATED_BED_SENSOR_TYPE 0
-#define HEATED_BED_SENSOR_PIN TEMP_BED_PIN
-#define HEATED_BED_HEATER_PIN HEATER_BED_PIN
-#define HEATED_BED_SET_INTERVAL 5000
-#define HEATED_BED_HEAT_MANAGER 1
-#define HEATED_BED_PID_INTEGRAL_DRIVE_MAX 255
-#define HEATED_BED_PID_INTEGRAL_DRIVE_MIN 80
-#define HEATED_BED_PID_PGAIN_OR_DEAD_TIME   87.86
-#define HEATED_BED_PID_IGAIN   3.01
-#define HEATED_BED_PID_DGAIN 641.82
-#define HEATED_BED_PID_MAX 255
-#define HEATED_BED_DECOUPLE_TEST_PERIOD 300000
 
 
 // ################ Endstop configuration #####################
