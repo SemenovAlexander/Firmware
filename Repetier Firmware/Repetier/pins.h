@@ -1938,6 +1938,8 @@ S3(ext)=9
 #define TEMP_1_PIN     -1
 #elif CLONE == 1
 #define TEMP_1_PIN     0
+#elif CLONE == 2
+#define TEMP_1_PIN     -1
 #endif
 #define TEMP_2_PIN     -1
 #define HEATER_0_PIN 9
