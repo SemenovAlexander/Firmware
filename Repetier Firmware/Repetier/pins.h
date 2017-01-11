@@ -1943,7 +1943,7 @@ S3(ext)=9
 #define HEATER_2_PIN -1
 #elif CLONE == 1
 #define HEATER_0_PIN 9
-#define HEATER_1_PIN 9
+#define HEATER_1_PIN -1
 #define HEATER_2_PIN -1
 #elif CLONE == 2
 #define HEATER_0_PIN 9
