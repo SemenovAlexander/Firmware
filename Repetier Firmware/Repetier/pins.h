@@ -1926,11 +1926,6 @@ S3(ext)=9
 #define Z_MS1_PIN      68
 #define Z_MS2_PIN      67
 
-// ### EXT0 Pins ###
-
-
-// ### EXT1 Pins ###
-
 // ### HOTEND PINS ###
 #if MOTHERBOARD == 301
 #define TEMP_0_PIN     0
@@ -1939,12 +1934,22 @@ S3(ext)=9
 #elif CLONE == 1
 #define TEMP_1_PIN     0
 #elif CLONE == 2
-#define TEMP_1_PIN     -1
+#define TEMP_1_PIN     -1 // WILL NEED ASSIGNED EVENTUALLY
 #endif
 #define TEMP_2_PIN     -1
+#if CLONE == 0
 #define HEATER_0_PIN 9
 #define HEATER_1_PIN -1
 #define HEATER_2_PIN -1
+#elif CLONE == 1
+#define HEATER_0_PIN 9
+#define HEATER_1_PIN 9
+#define HEATER_2_PIN -1
+#elif CLONE == 2
+#define HEATER_0_PIN 9
+#define HEATER_1_PIN -1 // WILL NEED ASSIGNED EVENTUALLY
+#define HEATER_2_PIN -1
+#endif
 #elif MOTHERBOARD == 302
 #define TEMP_0_PIN     0
 #define TEMP_1_PIN     -1
