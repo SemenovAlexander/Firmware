@@ -487,7 +487,7 @@ Hacker H2        = 6
 #if NUM_EXTRUDER == 1
 #define MOTOR_CURRENT {140,140,140,130,0}
 #elif NUM_EXTRUDER == 2
-#define MOTOR_CURRENT {140,140,140,150,150}
+#define MOTOR_CURRENT {140,140,140,130,130}
 #endif
 #define HAVE_HEATED_BED 1
 #define INVERT_X_DIR 1
