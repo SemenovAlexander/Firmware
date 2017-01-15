@@ -353,9 +353,9 @@ Hacker Series H2 = 6
 #define EXT0_PID_I 0.73
 #define EXT0_PID_D 53.41
 #define EXT0_PID_MAX 255
-#define MIN_EXTRUDER_TEMP 150  //  this is the minimum temperature that will allow the extruder to drive filament, lower and it will ignore extruder commands
+#define MIN_EXTRUDER_TEMP 100  //  this is the minimum temperature that will allow the extruder to drive filament, lower and it will ignore extruder commands
 #define MAXTEMP 290            //  this is the max allowable temp the hotend can be set at, any higher will trigger safety's
-#define MIN_DEFECT_TEMPERATURE 18  // this is the min temp that will allow the hotend to start heating.  Below this it will show as defective to help identify bad thermistors
+#define MIN_DEFECT_TEMPERATURE 10  // this is the min temp that will allow the hotend to start heating.  Below this it will show as defective to help identify bad thermistors
 #define MAX_DEFECT_TEMPERATURE 300 // this is the max temp that wthe printer will throw errors about defective thermistors
 #define INVERT_X_DIR 1
 #define INVERT_Y_DIR 1
